@@ -2,8 +2,8 @@
 window.SNO_CONFIG = {
   institution: "Кафедра экологии · РГАУ-МСХА имени К.А. Тимирязева",
   // Например: https://t.me/имя_сообщества или mailto:адрес@вуз.ru
-  contactUrl: "",
-  contactLabel: "Написать организаторам",
+  contactUrl: "mailto:alexandrov_na@rgau-msha.ru",
+  contactLabel: "Предложить тему или мероприятие",
   // Только реальные анонсы. date — YYYY-MM-DD, url — ссылка на подробности.
   // { title: "Название встречи", date: "2026-12-01", location: "Аудитория 101", url: "https://..." }
   events: []
