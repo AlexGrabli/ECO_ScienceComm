@@ -8,6 +8,72 @@
     } catch { return null; }
   };
   if (config.institution) document.getElementById("institution").textContent = config.institution;
+  if (config.leader?.name) document.getElementById("leader-name").textContent = config.leader.name;
+  if (config.leader?.position) document.getElementById("leader-position").textContent = config.leader.position;
+  const students = Array.isArray(config.students) ? config.students.filter(student => student?.name) : [];
+  if (students.length) {
+    const list = document.getElementById("student-list");
+    list.replaceChildren();
+    students.forEach(student => {
+      const member = document.createElement("div");
+      member.className = "student-member";
+      const name = document.createElement("h3");
+      name.textContent = student.name;
+      const role = document.createElement("p");
+      role.textContent = student.role || "Участник актива СНО";
+      member.append(name, role);
+      list.append(member);
+    });
+  }
+  function validDate(value) {
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const parsed = new Date(`${value}T12:00:00Z`);
+    return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+  }
+  const formatDate = value => new Intl.DateTimeFormat("ru-RU", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}).format(new Date(`${value}T12:00:00Z`));
+  function renderPublications(items, containerId, external) {
+    const publications = Array.isArray(items) ? items.filter(item => item?.title && item.source && /^https?:/.test(safeUrl(item.url) || "") && validDate(item.date)) : [];
+    if (!publications.length) return;
+    publications.sort((a, b) => external ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+    const container = document.getElementById(containerId);
+    container.replaceChildren();
+    publications.forEach(item => {
+      const article = document.createElement("article");
+      article.className = "publication";
+      const meta = document.createElement("p");
+      meta.className = "publication-meta";
+      const time = document.createElement("time");
+      time.dateTime = item.date;
+      time.textContent = `${external ? "Начало: " : "Опубликовано: "}${formatDate(item.date)}`;
+      meta.append(time);
+      if (external && item.type) meta.append(document.createTextNode(` · ${item.type}`));
+      const title = document.createElement("h3");
+      const titleLink = document.createElement("a");
+      titleLink.href = safeUrl(item.url);
+      titleLink.textContent = item.title;
+      title.append(titleLink);
+      article.append(meta, title);
+      if (item.summary) {
+        const description = document.createElement("p");
+        description.textContent = item.summary;
+        article.append(description);
+      }
+      if (external && validDate(item.deadline)) {
+        const deadline = document.createElement("p");
+        deadline.className = "publication-deadline";
+        deadline.textContent = `Заявки до ${formatDate(item.deadline)}`;
+        article.append(deadline);
+      }
+      const source = document.createElement("a");
+      source.className = "text-link publication-source";
+      source.href = safeUrl(item.url);
+      source.textContent = `${external ? "Организатор" : "Источник"}: ${item.source} ↗`;
+      article.append(source);
+      container.append(article);
+    });
+  }
+  renderPublications(config.news, "news-list", false);
+  renderPublications(config.opportunities, "opportunity-list", true);
   const contactUrl = safeUrl(config.contactUrl);
   if (contactUrl) {
     const container = document.getElementById("join-contact");
