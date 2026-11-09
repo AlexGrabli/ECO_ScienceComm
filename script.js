@@ -45,6 +45,9 @@
       const time = document.createElement("time");
       time.dateTime = item.date;
       time.textContent = `${external ? "Начало: " : "Опубликовано: "}${formatDate(item.date)}`;
+      if (external && validDate(item.endDate) && item.endDate >= item.date) {
+        time.textContent = `Даты: ${formatDate(item.date)} — ${formatDate(item.endDate)}`;
+      }
       meta.append(time);
       if (external && item.type) meta.append(document.createTextNode(` · ${item.type}`));
       const title = document.createElement("h3");
@@ -53,6 +56,12 @@
       titleLink.textContent = item.title;
       title.append(titleLink);
       article.append(meta, title);
+      if (external && item.location) {
+        const location = document.createElement("p");
+        location.className = "publication-location";
+        location.textContent = item.location;
+        article.append(location);
+      }
       if (item.summary) {
         const description = document.createElement("p");
         description.textContent = item.summary;
@@ -63,6 +72,11 @@
         deadline.className = "publication-deadline";
         deadline.textContent = `Заявки до ${formatDate(item.deadline)}`;
         article.append(deadline);
+      } else if (external && item.deadlineNote) {
+        const note = document.createElement("p");
+        note.className = "publication-deadline-note";
+        note.textContent = item.deadlineNote;
+        article.append(note);
       }
       const source = document.createElement("a");
       source.className = "text-link publication-source";
