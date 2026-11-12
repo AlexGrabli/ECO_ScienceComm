@@ -16,14 +16,14 @@ const cards = items.map(item => {
   return item;
 }).sort((a, b) => a.date.localeCompare(b.date)).map(item => {
   const range = validDate(item.endDate) && item.endDate >= item.date;
-  const dates = range ? `Даты: ${formatDate(item.date)} — ${formatDate(item.endDate)}` : `Начало: ${formatDate(item.date)}`;
+  const dates = range ? `С ${formatDate(item.date)} по ${formatDate(item.endDate)}` : `Начало: ${formatDate(item.date)}`;
   return `<article class="publication">
-        <p class="publication-meta"><time datetime="${escape(item.date)}">${escape(dates)}</time>${item.type ? ` · ${escape(item.type)}` : ""}</p>
+        <p class="publication-meta"><time datetime="${escape(item.date)}">${escape(dates)}</time>${item.type ? ` ${escape(item.type)}` : ""}</p>
         <h3><a href="${escape(item.url)}">${escape(item.title)}</a></h3>
         ${item.location ? `<p class="publication-location">${escape(item.location)}</p>` : ""}
         ${item.summary ? `<p>${escape(item.summary)}</p>` : ""}
         ${validDate(item.deadline) ? `<p class="publication-deadline">Заявки до ${escape(formatDate(item.deadline))}</p>` : item.deadlineNote ? `<p class="publication-deadline-note">${escape(item.deadlineNote)}</p>` : ""}
-        <a class="text-link publication-source" href="${escape(item.url)}">Организатор: ${escape(item.source)} ↗</a>
+        <a class="text-link publication-source" href="${escape(item.url)}">Организатор: ${escape(item.source)}</a>
       </article>`;
 }).join("\n      ");
 const file = path.join(root, "index.html");
@@ -36,11 +36,11 @@ const projectCards = projects.map(project => {
   if (!project.title || !project.summary || !project.supervisor || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(project.email)) throw new Error("Проверьте название, описание, руководителя и почту проекта: " + project.title);
   const fields = [["Руководитель", project.supervisor], ["Для кого", project.audience], ["Результат", project.outcome], ["Сроки и формат", project.duration], ["Участники", project.places]];
   const contact = `mailto:${project.email}?subject=${encodeURIComponent("Участие в проекте СНО: " + project.title)}`;
-  return `<article class="project-card"><p class="eyebrow">ПРОЕКТ СНО</p><h3>${escape(project.title)}</h3><p>${escape(project.summary)}</p><dl>${fields.filter(([,value]) => value).map(([label,value]) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join("")}</dl><a class="text-link" href="${escape(contact)}">Обсудить участие ↗</a></article>`;
+  return `<article class="project-card"><h3>${escape(project.title)}</h3><p>${escape(project.summary)}</p><dl>${fields.filter(([,value]) => value).map(([label,value]) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join("")}</dl><a class="text-link" href="${escape(contact)}">Обсудить участие</a></article>`;
 }).join("\n      ");
 const projectMarker = /<!-- projects:start -->[\s\S]*?<!-- projects:end -->/;
 if (!projectMarker.test(html)) throw new Error("Не найдены границы проектов в index.html");
-const emptyProjects = '<div class="section-empty"><span class="empty-mark" aria-hidden="true">↗</span><div><h3>Собираем первые предложения</h3><p>Здесь появятся проекты преподавателей с задачами, условиями участия и контактами руководителей. Можно предложить собственную идею руководителю СНО.</p></div></div>';
+const emptyProjects = '<div class="section-empty"><div><h3>Собираем первые предложения</h3><p>Здесь появятся проекты преподавателей с задачами, условиями участия и контактами руководителей. Можно предложить собственную идею руководителю СНО.</p></div></div>';
 html = html.replace(projectMarker, `<!-- projects:start -->\n      ${projectCards || emptyProjects}\n      <!-- projects:end -->`);
 const submissionBody = "Название проекта:\n\nКраткое описание:\n\nЗадачи студента:\n\nОжидаемый результат:\n\nРуководитель (ФИО, должность):\n\nКонтакты руководителя:\n\nДля кого (курс, навыки, опыт):\n\nСроки и формат работы:\n\nЧисло участников:\n\nЧему готовы обучить:\n";
 const submissionUrl = `mailto:alexandrov_na@rgau-msha.ru?subject=${encodeURIComponent("Проект для студентов СНО")}&body=${encodeURIComponent(submissionBody)}`;
