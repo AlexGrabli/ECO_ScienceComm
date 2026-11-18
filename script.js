@@ -131,6 +131,16 @@
       list.append(row);
     });
   }
+  const menu = document.querySelector(".site-menu");
+  menu.addEventListener("click", event => {
+    if (event.target.closest("a")) menu.open = false;
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && menu.open) {
+      menu.open = false;
+      menu.querySelector("summary").focus();
+    }
+  });
   function openGuide() {
     const id = window.location.hash.slice(1);
     const target = document.getElementById(id);

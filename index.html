@@ -3,54 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#173e32">
+  <meta name="theme-color" content="#248958">
   <meta name="description" content="СНО кафедры экологии РГАУ-МСХА имени К.А. Тимирязева. Первые шаги в исследовании, события и полезные материалы для студентов.">
   <title>СНО кафедры экологии | РГАУ-МСХА имени К.А. Тимирязева</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=2f669059383e">
-  <script src="./site-config.js?v=1f2fcf0ecef2" defer></script>
-  <script src="./script.js?v=2c28f435deb9" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=6c5c4edb92c4">
+  <script src="./site-config.js?v=5993474e0b18" defer></script>
+  <script src="./script.js?v=f60008a206a7" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <div class="institution-bar"><div class="wrap"><span>РГАУ-МСХА имени К. А. Тимирязева</span><a href="https://ecolog.pro/">Сайт кафедры ↗</a></div></div>
   <header class="header wrap">
-    <a class="brand" href="./" aria-label="СНО кафедры экологии, главная"><img class="department-logo" src="./assets/department-logo.png?v=8be1671a8dc5" width="76" height="76" alt="Логотип кафедры экологии"><span>СНО кафедры экологии</span></a>
-    <nav aria-label="Основная навигация"><a href="#about">О нас</a><a href="#our-events">Мероприятия</a><a href="#projects">Проекты</a><a href="#opportunities">Возможности</a><a href="#events">План работы</a></nav>
-    <a class="header-join" href="#join">Присоединиться</a>
+    <a class="brand" href="./"><img src="./assets/department-logo.png" alt="" width="54" height="54"><span>СНО<span>Кафедра экологии</span></span></a>
+    <nav class="desktop-nav" aria-label="Основная навигация"><a href="#about">О нас</a><a href="#opportunities">Конференции</a><a href="#projects">Проекты</a><a href="#resources">Материалы</a></nav>
+    <a class="header-join button primary" href="#join">Присоединиться</a>
+    <details class="site-menu"><summary>Меню</summary><nav aria-label="Разделы сайта">
+      <a href="#about">Об обществе</a><a href="#opportunities">Конференции</a><a href="#projects">Проекты</a><a href="#our-events">Наши мероприятия</a><a href="#events">План работы</a><a href="#resources">Материалы</a><a href="#join">Контакты</a>
+    </nav></details>
   </header>
   <main id="main">
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="intro-copy">
-        <h1 id="hero-title">Большая наука начинается с любопытства.</h1>
-        <p class="hero-description">Исследуй почву, воду и городские экосистемы вместе со СНО Тимирязевской академии.</p>
-        <div class="hero-actions"><a class="button primary" href="#join">Хочу участвовать</a><a class="text-link" href="#about">Узнать о СНО</a></div>
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="field" src="./assets/timiryazev-field.jpg" width="1680" height="945" alt="" fetchpriority="high">
+      <div class="hero-inner wrap">
+        <div class="intro-copy">
+          <p class="hero-label">Кафедра экологии</p>
+          <h1 id="hero-title">Студенческое научное общество</h1>
+          <p class="hero-description">Исследуй почву, воду и городские экосистемы вместе со студентами и преподавателями Тимирязевской академии.</p>
+          <div class="hero-actions"><a class="button primary" href="#join">Хочу участвовать <span aria-hidden="true">→</span></a><a class="button glass" href="#projects">Найти проект</a></div>
+        </div>
+        <a class="plan-cover" href="./assets/sno-plan-2026-2027.pdf">
+          <span class="cover-year">2026 / 2027</span><span class="cover-title">План работы СНО</span><span class="cover-link">Открыть PDF <span aria-hidden="true">↗</span></span>
+        </a>
       </div>
-      <figure class="hero-photo">
-        <img src="./assets/timiryazev-field.jpg" width="1680" height="945" alt="Золотистое поле на фоне московских многоэтажек и деревьев" fetchpriority="high">
-        <figcaption>Северное опытное поле Тимирязевской академии,&nbsp;2014</figcaption>
-      </figure>
-    </section>
-    <section class="events-section" id="events" aria-labelledby="events-title"><div class="wrap section">
-      <div class="section-heading"><div><h2 id="events-title">План работы</h2></div><span class="small-label">2026/2027 учебный год</span></div>
-      <div class="plan-file"><img class="plan-icon" src="./assets/plan-checklist.png" width="80" height="100" alt="" aria-hidden="true"><div class="plan-description"><h3>План работы СНО кафедры экологии</h3><p>Мероприятия, сроки и направления работы на 2026/2027 учебный год.</p><a class="text-link" href="./assets/sno-plan-2026-2027.pdf">Открыть PDF</a></div><a class="button primary" href="./assets/sno-plan-2026-2027.pdf" download="План СНО кафедры экологии 2026-2027.pdf">Скачать план</a></div>
-      <div id="event-list"></div>
-    </div></section>
-    <section class="section wrap about" id="about" aria-labelledby="about-title">
-      <div><h2 id="about-title">О нас</h2></div>
-      <div class="about-copy"><p class="large-copy">Студенческое научное общество кафедры экологии РГАУ-МСХА имени К.А. Тимирязева.</p><p>Для первого шага достаточно интереса к теме. Исследование начинается с наблюдений и вопросов. Как сравнить состояние двух участков? Чем объяснить различия в пробах? Как отличить закономерность от случайности? Здесь собраны ориентиры для первого исследования и план работы СНО.</p><a class="text-link department-link" href="https://ecolog.pro/">Сайт кафедры</a></div>
-      <div class="team-grid">
-        <article class="team-card"><h3><a class="staff-link" href="https://www.timacad.ru/staff/тихонова-мария-васильевна">Тихонова Мария Васильевна</a></h3><p>Исполняющая обязанности заведующего кафедрой экологии</p></article>
-        <article class="team-card"><h3><a class="staff-link" id="leader-name" href="https://www.timacad.ru/staff/александров-никита-александрович">Александров Никита Александрович</a></h3><p>Руководитель СНО</p><p class="team-role" id="leader-position">Старший преподаватель кафедры экологии</p><a class="text-link" href="mailto:alexandrov_na@rgau-msha.ru">alexandrov_na@rgau-msha.ru</a></article>
-        <article class="team-card student-team"><div id="student-list"><h3>Команда формируется</h3><p>Присоединяйся к студенческому активу СНО, чтобы организовывать встречи, рассказывать о научных событиях и предлагать проекты.</p><a class="text-link" href="mailto:alexandrov_na@rgau-msha.ru?subject=Хочу%20присоединиться%20к%20активу%20СНО">Хочу в команду</a></div></article>
-      </div>
-    </section>
-    <section class="section wrap news-section" id="our-events" aria-labelledby="our-events-title">
-      <div class="section-heading"><div><h2 id="our-events-title">Наши мероприятия</h2></div><a class="text-link" href="#events">План работы на год</a></div>
-      <p class="section-intro">Новости о событиях, организованных с участием СНО: встречи, исследования, экологические акции и другие совместные проекты. Публикуем материалы кафедры и университета со ссылками на первоисточник.</p>
-      <div class="publication-list" id="news-list"><div class="section-empty"><div><h3>Готовим первые публикации</h3><p>Здесь появятся новости о мероприятиях с нашим участием.</p></div></div></div>
+      <div class="photo-label wrap">Северное опытное поле Тимирязевской академии · 2014</div>
     </section>
     <section class="opportunities-section" id="opportunities" aria-labelledby="opportunities-title"><div class="section wrap">
-      <div class="section-heading"><div><h2 id="opportunities-title">Возможности для студентов</h2></div></div>
+      <div class="section-heading"><div><h2 id="opportunities-title">Конференции и конкурсы</h2></div></div>
       <p class="section-intro">Внешние конференции, круглые столы, конкурсы и научные школы, в которых могут участвовать студенты. В объявлениях указаны сроки подачи заявок, условия участия и ссылки на организаторов.</p>
       <div class="publication-list" id="opportunity-list">
       <!-- opportunities:start -->
@@ -73,6 +62,25 @@
       <!-- opportunities:end -->
       </div>
     </div></section>
+    <section class="events-section" id="events" aria-labelledby="events-title"><div class="wrap section">
+      <div class="section-heading"><div><h2 id="events-title">План работы</h2></div><span class="small-label">2026/2027 учебный год</span></div>
+      <div class="plan-file"><img class="plan-icon" src="./assets/plan-checklist.png" width="80" height="100" alt="" aria-hidden="true"><div class="plan-description"><h3>План работы СНО кафедры экологии</h3><p>Мероприятия, сроки и направления работы на 2026/2027 учебный год.</p><a class="text-link" href="./assets/sno-plan-2026-2027.pdf">Открыть PDF</a></div><a class="button primary" href="./assets/sno-plan-2026-2027.pdf" download="План СНО кафедры экологии 2026-2027.pdf">Скачать план</a></div>
+      <div id="event-list"></div>
+    </div></section>
+    <section class="section wrap about" id="about" aria-labelledby="about-title">
+      <div><h2 id="about-title">О нас</h2></div>
+      <div class="about-copy"><p class="large-copy">Студенческое научное общество кафедры экологии РГАУ-МСХА имени К.А. Тимирязева.</p><p>Для первого шага достаточно интереса к теме. Исследование начинается с наблюдений и вопросов. Как сравнить состояние двух участков? Чем объяснить различия в пробах? Как отличить закономерность от случайности? Здесь собраны ориентиры для первого исследования и план работы СНО.</p><a class="text-link department-link" href="https://ecolog.pro/">Сайт кафедры</a></div>
+      <div class="team-grid">
+        <article class="team-card"><h3><a class="staff-link" href="https://www.timacad.ru/staff/тихонова-мария-васильевна">Тихонова Мария Васильевна</a></h3><p>Исполняющая обязанности заведующего кафедрой экологии</p></article>
+        <article class="team-card"><h3><a class="staff-link" id="leader-name" href="https://www.timacad.ru/staff/александров-никита-александрович">Александров Никита Александрович</a></h3><p>Руководитель СНО</p><p class="team-role" id="leader-position">Старший преподаватель кафедры экологии</p><a class="text-link" href="mailto:alexandrov_na@rgau-msha.ru">alexandrov_na@rgau-msha.ru</a></article>
+        <article class="team-card student-team"><div id="student-list"><h3>Команда формируется</h3><p>Присоединяйся к студенческому активу СНО, чтобы организовывать встречи, рассказывать о научных событиях и предлагать проекты.</p><a class="text-link" href="mailto:alexandrov_na@rgau-msha.ru?subject=Хочу%20присоединиться%20к%20активу%20СНО">Хочу в команду</a></div></article>
+      </div>
+    </section>
+    <section class="section wrap news-section" id="our-events" aria-labelledby="our-events-title">
+      <div class="section-heading"><div><h2 id="our-events-title">Наши мероприятия</h2></div><a class="text-link" href="#events">План работы на год</a></div>
+      <p class="section-intro">Новости о событиях, организованных с участием СНО: встречи, исследования, экологические акции и другие совместные проекты. Публикуем материалы кафедры и университета со ссылками на первоисточник.</p>
+      <div class="publication-list" id="news-list"><div class="section-empty"><div><h3>Готовим первые публикации</h3><p>Здесь появятся новости о мероприятиях с нашим участием.</p></div></div></div>
+    </section>
     <section class="section wrap" id="projects" aria-labelledby="projects-title">
       <div class="section-heading"><h2 id="projects-title">Проекты для студентов</h2><a class="text-link" href="#submit-project">Для преподавателей</a></div>
       <p class="section-intro">Темы от преподавателей, над которыми можно работать в рамках СНО. Выбирай задачу по интересам и связывайся с руководителем, чтобы обсудить участие.</p>
