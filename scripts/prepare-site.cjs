@@ -41,7 +41,7 @@ const projectCards = projects.map(project => {
 }).join("\n      ");
 const projectMarker = /<!-- projects:start -->[\s\S]*?<!-- projects:end -->/;
 if (!projectMarker.test(html)) throw new Error("Не найдены границы проектов в index.html");
-const emptyProjects = '<div class="section-empty"><div><h3>Собираем первые предложения</h3><p>Здесь появятся проекты преподавателей с задачами, условиями участия и контактами руководителей. Можно предложить собственную идею руководителю СНО.</p></div></div>';
+const emptyProjects = '<div class="section-empty"><div><h3>Собираем первые предложения</h3><p>Можно предложить собственную идею руководителю СНО.</p></div></div>';
 html = html.replace(projectMarker, `<!-- projects:start -->\n      ${projectCards || emptyProjects}\n      <!-- projects:end -->`);
 const submissionBody = "Название проекта:\n\nКраткое описание:\n\nЗадачи студента:\n\nОжидаемый результат:\n\nРуководитель (ФИО, должность):\n\nКонтакты руководителя:\n\nДля кого (курс, навыки, опыт):\n\nСроки и формат работы:\n\nЧисло участников:\n\nЧему готовы обучить:\n";
 const submissionUrl = `mailto:alexandrov_na@rgau-msha.ru?subject=${encodeURIComponent("Проект для студентов СНО")}&body=${encodeURIComponent(submissionBody)}`;
