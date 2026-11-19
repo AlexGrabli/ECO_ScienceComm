@@ -24,7 +24,8 @@ const cards = items.map(item => {
         ${item.summary ? `<p>${escape(item.summary)}</p>` : ""}
         ${validDate(item.deadline) ? `<p class="publication-deadline">Заявки до ${escape(formatDate(item.deadline))}</p>` : item.deadlineNote ? `<p class="publication-deadline-note">${escape(item.deadlineNote)}</p>` : ""}
         <a class="text-link publication-source" href="${escape(item.url)}">Организатор: ${escape(item.source)}</a>
-      </article>`;
+${/^\.\/assets\/[a-zA-Z0-9._-]+\.pdf$/.test(item.pdf || "") ? `        <a class="text-link publication-source" href="${escape(item.pdf)}" download>Скачать информационное письмо (PDF)</a>
+` : ""}      </article>`;
 }).join("\n      ");
 const file = path.join(root, "index.html");
 let html = fs.readFileSync(file, "utf8");

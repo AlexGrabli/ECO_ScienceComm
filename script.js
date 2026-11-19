@@ -83,6 +83,14 @@
       source.href = safeUrl(item.url);
       source.textContent = `${external ? "Организатор" : "Источник"}: ${item.source}`;
       article.append(source);
+      if (external && /^\.\/assets\/[a-zA-Z0-9._-]+\.pdf$/.test(item.pdf || "")) {
+        const pdf = document.createElement("a");
+        pdf.className = "text-link publication-source";
+        pdf.href = item.pdf;
+        pdf.download = "";
+        pdf.textContent = "Скачать информационное письмо (PDF)";
+        article.append(pdf);
+      }
       container.append(article);
     });
   }
