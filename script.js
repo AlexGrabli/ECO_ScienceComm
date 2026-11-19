@@ -46,10 +46,10 @@
       time.dateTime = item.date;
       time.textContent = `${external ? "Начало: " : "Опубликовано: "}${formatDate(item.date)}`;
       if (external && validDate(item.endDate) && item.endDate >= item.date) {
-        time.textContent = `Даты: ${formatDate(item.date)} — ${formatDate(item.endDate)}`;
+        time.textContent = `С ${formatDate(item.date)} по ${formatDate(item.endDate)}`;
       }
       meta.append(time);
-      if (external && item.type) meta.append(document.createTextNode(` · ${item.type}`));
+      if (external && item.type) meta.append(" ", item.type);
       const title = document.createElement("h3");
       const titleLink = document.createElement("a");
       titleLink.href = safeUrl(item.url);
@@ -81,8 +81,16 @@
       const source = document.createElement("a");
       source.className = "text-link publication-source";
       source.href = safeUrl(item.url);
-      source.textContent = `${external ? "Организатор" : "Источник"}: ${item.source} ↗`;
+      source.textContent = `${external ? "Организатор" : "Источник"}: ${item.source}`;
       article.append(source);
+      if (external && /^\.\/assets\/[a-zA-Z0-9._-]+\.pdf$/.test(item.pdf || "")) {
+        const pdf = document.createElement("a");
+        pdf.className = "text-link publication-source";
+        pdf.href = item.pdf;
+        pdf.download = "";
+        pdf.textContent = "Скачать информационное письмо (PDF)";
+        article.append(pdf);
+      }
       container.append(article);
     });
   }
@@ -94,7 +102,7 @@
     const link = document.createElement("a");
     link.className = "button light";
     link.href = contactUrl;
-    link.textContent = `${config.contactLabel || "Написать организаторам"} ↗`;
+    link.textContent = config.contactLabel || "Написать организаторам";
     container.replaceChildren(link);
   }
   const events = Array.isArray(config.events) ? config.events : [];
@@ -124,13 +132,23 @@
         const link = document.createElement("a");
         link.className = "text-link";
         link.href = href;
-        link.textContent = "Подробнее ↗";
+        link.textContent = "Подробнее";
         link.setAttribute("aria-label", `Подробнее: ${event.title}`);
         row.append(link);
       }
       list.append(row);
     });
   }
+  const menu = document.querySelector(".site-menu");
+  menu.addEventListener("click", event => {
+    if (event.target.closest("a")) menu.open = false;
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && menu.open) {
+      menu.open = false;
+      menu.querySelector("summary").focus();
+    }
+  });
   function openGuide() {
     const id = window.location.hash.slice(1);
     const target = document.getElementById(id);
