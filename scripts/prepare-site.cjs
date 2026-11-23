@@ -25,6 +25,7 @@ const cards = items.map(item => {
         ${validDate(item.deadline) ? `<p class="publication-deadline">Заявки до ${escape(formatDate(item.deadline))}</p>` : item.deadlineNote ? `<p class="publication-deadline-note">${escape(item.deadlineNote)}</p>` : ""}
         <a class="text-link publication-source" href="${escape(item.url)}">Организатор: ${escape(item.source)}</a>
 ${/^\.\/assets\/[a-zA-Z0-9._-]+\.pdf$/.test(item.pdf || "") ? `        <a class="text-link publication-source" href="${escape(item.pdf)}" download>Скачать информационное письмо (PDF)</a>
+` : ""}${/^\.\/assets\/[a-zA-Z0-9._-]+\.docx$/.test(item.docx || "") ? `        <a class="text-link publication-source" href="${escape(item.docx)}" download>Скачать регистрационную форму и образец статьи (DOCX)</a>
 ` : ""}      </article>`;
 }).join("\n      ");
 const file = path.join(root, "index.html");

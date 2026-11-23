@@ -91,6 +91,14 @@
         pdf.textContent = "Скачать информационное письмо (PDF)";
         article.append(pdf);
       }
+      if (external && /^\.\/assets\/[a-zA-Z0-9._-]+\.docx$/.test(item.docx || "")) {
+        const docx = document.createElement("a");
+        docx.className = "text-link publication-source";
+        docx.href = item.docx;
+        docx.download = "";
+        docx.textContent = "Скачать регистрационную форму и образец статьи (DOCX)";
+        article.append(docx);
+      }
       container.append(article);
     });
   }
